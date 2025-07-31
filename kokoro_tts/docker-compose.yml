@@ -1,0 +1,21 @@
+services:
+  kokoro-tts:
+    container_name: kokoro-tts
+    image: ghcr.io/remsky/kokoro-fastapi-gpu:v0.2.2
+    ports:
+      - "8880:8880"
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - capabilities: [gpu]
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
+      - NVIDIA_DRIVER_CAPABILITIES=all
+    restart: unless-stopped
+    networks:
+      - proxy-network
+
+networks:
+  proxy-network:
+    external: true

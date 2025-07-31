@@ -1,0 +1,26 @@
+services:
+  transcriber:
+    build: .
+    container_name: transcriber
+    ports:
+      - "5005:5005"
+    environment:
+      - TRANSCRIBE_API_KEY=your_api_key
+      - MODEL=medium
+      - HF_TOKEN=your_api_key
+    runtime: nvidia
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+    networks:
+      - proxy-network
+
+    volumes:
+      - ./temp:/workspace/temp
+networks:
+  proxy-network:
+    external: true

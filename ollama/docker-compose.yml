@@ -1,0 +1,17 @@
+services:
+  llama3:
+    build: .
+    container_name: llama3
+    environment:
+      - LLAMA_MODEL=llama3:8b
+    ports:
+      - "11434:11434"
+    volumes:
+      - .:/data
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]

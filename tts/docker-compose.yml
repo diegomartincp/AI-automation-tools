@@ -1,0 +1,21 @@
+services:
+  barktts:
+    build: .
+    ports:
+      - "5000:5000"
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
+      - NVIDIA_DRIVER_CAPABILITIES=all
+    networks:
+      - proxy-network
+
+networks:
+  proxy-network:
+    external: true
