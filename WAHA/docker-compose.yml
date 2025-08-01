@@ -5,12 +5,11 @@ services:
     ports:
       - "3002:3000"
     environment:
-      - WAHA_API_KEY_PLAIN=your_api_key
+      - WAHA_API_KEY=your_api_key
       - WAHA_DASHBOARD_USERNAME=admin
       - WAHA_DASHBOARD_PASSWORD=your_password
       - WHATSAPP_SWAGGER_USERNAME=admin
       - WHATSAPP_SWAGGER_PASSWORD=your_password
-    tty: true
     restart: unless-stopped
     volumes:
       - ./waha-sessions:/app/.sessions
