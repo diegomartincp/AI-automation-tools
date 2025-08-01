@@ -13,3 +13,9 @@ services:
     restart: unless-stopped
     volumes:
       - ./waha-sessions:/app/.sessions
+    networks:
+      - proxy-network
+
+networks:
+  proxy-network:
+    external: true
