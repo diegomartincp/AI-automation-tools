@@ -1,6 +1,7 @@
 services:
   waha:
     image: devlikeapro/waha
+    container_name: WAHA
     ports:
       - "3002:3000"
     environment:
